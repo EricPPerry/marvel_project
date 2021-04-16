@@ -57,7 +57,10 @@ class Character(db.Model):
     id = db.Column(db.String, primary_key=True)
     character_name = db.Column(db.String(150))
     description = db.Column(db.String(150))
-    comics_appeared_in = db.Column(db.String(150))
+    #comics_appeared_in = db.Column(db.String(150))
+
+
+    comics_appeared_in = db.Column(db.Integer)
     super_power = db.Column(db.String(150))
     user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable = False)
 
