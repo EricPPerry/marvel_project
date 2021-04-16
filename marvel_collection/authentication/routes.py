@@ -14,8 +14,8 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.about_me = form.about_me.data
         db.session.commit()
-        flash('Your profile has been updated.')
-        return redirect(url_for('auth.edit_profile'))
+        flash('Your profile has been updated.','user-edited')
+        return redirect(url_for('auth.mycollection'))
     #in case the form does not validate correctly, resets fields to default/beginning values
     elif request.method == 'GET':
         form.about_me.data = current_user.about_me
@@ -53,7 +53,7 @@ def signup():
 
             db.session.add(user)
             db.session.commit()
-            flash(f'You have successfully created a user account for {username}!!! Welcome!', 'user-created')
+            flash(f'You have successfully created a user account:{username}! Welcome, please login to start your new collection!', 'user-created')
 
             return redirect(url_for('main_site.home'))
     

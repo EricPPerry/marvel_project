@@ -12,6 +12,7 @@
     {{ current_user.token }}
 </li>
 
+<p>About Me: </p>
 <table>
     {% if current_user.about_me %}
         <p>
@@ -21,8 +22,31 @@
 </table>
 
 {% if current_user.is_authenticated %}
-    <p><a href="{{ url_for('auth.edit_profile') }}">Edit Your About Me!</a> </p>
+    <p><a href="{{ url_for('auth.edit_profile') }}" style="font-size:85%">Edit Your About Me!</a> </p>
 {% endif %}
+
+<div class="container row">
+    <!--Checks to see if there are flashed messages, if there are they are set = messages-->
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages  %}
+            {% for cat,msg in messages %}
+                {% if cat == 'user-edited' %}
+                    <div class="alert alert-success col3">
+                        {{ msg }}
+                        <button type='button' class='close' data-dismiss = 'alert'>&times;</button>
+                    </div>        
+                    {% elif cat == 'auth-success' %}             
+                {% endif %}                
+            {% endfor %}            
+        {% endif %}
+    {% endwith %}
+</div>
+
+
+
+
+
+
 {% if user_collection %}
     {% for character in user_collection %}
     <p>{{ character }}</p>

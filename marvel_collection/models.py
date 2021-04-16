@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
         return self.pw_hashed
 
     def __repr__(self):
-        return f'Welcome! User {self.email} has been created and you may now start your garage!'
+        return f'Welcome! User {self.email} has been created and you may now start your collection!'
 
 class Character(db.Model):
     id = db.Column(db.String, primary_key=True)
