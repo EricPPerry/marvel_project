@@ -23,9 +23,13 @@
 {% if current_user.is_authenticated %}
     <p><a href="{{ url_for('auth.edit_profile') }}">Edit Your About Me!</a> </p>
 {% endif %}
-
-{% for character in user_collection %}
+{% if user_collection %}
+    {% for character in user_collection %}
     <p>{{ character }}</p>
-{% endfor %}
+    {% endfor %}
+{% else %}
+    <p>You haven't added any characters yet, feel free to add some via the API requests!</p>
+{% endif %}
+
 
 {% endblock content %}
