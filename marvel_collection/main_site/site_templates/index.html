@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <!--Checks to see if there are flashed messages, if there are they are set = messages-->
+    {% with messages = get_flashed_messages(with_categories = true) %}
+        {% if messages  %}
+            {% for category,msg in messages %}
+                {% if category == 'user-created' %}
+                    <div class="alert alert-success">
+                        {{ msg }}
+                        <button type='button' class='close' data-dismiss = 'alert'>&times;</button>
+                    </div>                    
+                {% endif %}                
+            {% endfor %}            
+        {% endif %}
+    {% endwith %}
+</div>
+
+<header class="row pt-4">
+    <div class="col-0 col-md-2"></div>
+    <div class="col-12 col-md-4 my-auto">
+        <h2>Build Your Garage With Us!</h2>
+        <p>Use your own cars, or just your dream cars for fun!</p>
+    </div>
+    <!--Sweet header image-->
+    <div class="col-12 col-md-4 my-auto" ><img src="../../static/images/parking.png" alt="Default Car Image" class="header-image mx-auto d-block"></div>
+    <div class="col-0 col-md-2"></div>
+</header>
+
+<!--Basic Middle Section-->
+<section class="row pb-5 just-content-center">
+    <div class="col-0 col-md-3"></div>
+    <div class="col-12 col-md-6" id="middle-text">
+        <h2>Share With Your Friends!</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo in recusandae amet ut nemo suscipit ad corrupti saepe quo esse perspiciatis praesentium adipisci, voluptatem eos asperiores voluptas minus nulla facilis.</p>
+    </div>
+    <div class="col-0 col-md-3"></div>
+</section>
+
+{% endblock content %}

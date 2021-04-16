@@ -1,0 +1,22 @@
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+       
+        <fieldset id="email-field">
+            {{ form.email.label }}
+            {{ form.email(class = 'form-control', placeholder = 'Email') }}
+        </fieldset>
+        <fieldset id="pass-field">
+            {{ form.password.label }}
+            {{ form.password(class = 'form-control', placeholder = 'Password') }}
+        </fieldset>
+        <!--Put Submit button in a row, to make it easier to center/add padding between it and the password input field-->
+        <div class="row mx-auto pt-4">
+        {{ form.submit_button(class = 'btn btn-primary mx-auto')}}
+        </div>
+
+    </div>
+
+
+
+</form>

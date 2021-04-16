@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/darkly/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+<link rel="stylesheet" href="../static/css/main.css">
+<title>Go Garage</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('main_site.home') }}">Go Garage</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('main_site.home') }}">Home</a>
+            </li>
+
+
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.mycollection')  }}">My Collection</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+            </li>
+            
+              
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.signin')  }}">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('auth.mycollection')  }}">My Collection</a>
+            </li>
+            {% endif %}
+            
+            
+            
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search other garages" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <a href="{{ url_for('auth.signup') }}" class="btn btn-outline-success my-2 my-sm-0 mx-3" role="button">Register</a>
+          </form>
+        </div>
+      </nav>
+    {% block content %}        
+    {% endblock content %}
+<!--Basic Footer Setup-->
+<footer class="row pt-5" id="footer">
+    <div class="col-4 col-md-4">
+        <div class="footer-text-flex">
+            <h4>Our Socials</h4>
+            <p>email@email.com</p>
+            <p>Twitter - @GoGarage</p>
+            <p>Instagram - GoGarage</p>
+        </div>
+    </div>
+
+    <div class="col-4 col-md-4">
+        <div class="footer-text-flex">
+            <h4>Go Garage</h4>
+            <p>Go Garage Features</p>
+            <p>Go Garage Collabs</p>
+            <p>Go Garage Premium Features</p>
+        </div>
+    </div>
+
+    <div class="col-4 col-md-4">
+        <div class="footer-text-flex">
+            <h4>Support</h4>
+            <p>support@gogarage.com</p>
+            <p>live chat</p>
+            <p>toll-free hotline</p>
+        </div>
+    </div>
+
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+</body>
+</html>
