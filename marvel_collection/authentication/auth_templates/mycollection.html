@@ -21,4 +21,8 @@
     <p><a href="{{ url_for('auth.edit_profile') }}">Edit Your About Me!</a> </p>
 {% endif %}
 
+{% for character in user_collection %}
+    <p>{{ character }}</p>
+{% endfor %}
+
 {% endblock content %}

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from marvel_collection.forms import UserLoginForm, EditProfileForm, SignUpForm
-from marvel_collection.models import User, db, check_password_hash
+from marvel_collection.models import User, db, check_password_hash, Character
 from flask_login import login_user, logout_user, login_required, current_user
 
 
@@ -25,7 +25,15 @@ def edit_profile():
 @auth.route('/mycollection')
 @login_required
 def mycollection():
-    return render_template('mycollection.html')
+    #user_collection = Character.query.filter(Character.user_token == current_user.token).all()
+    
+    #owner = current_user.token user_token = f'{owner}'
+    query_collection = Character.query.with_entities(Character.character_name, Character.user_token).all()
+    user_collection = []
+    for char, token in query_collection:
+        if token == current_user.token:
+            user_collection.append(char)
+    return render_template('mycollection.html', user_collection = user_collection)
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
