@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
     character = db.relationship('Character', backref = 'owner', lazy = True)
     ######
     about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    #last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     username = db.Column(db.String(100), nullable = True, default = '')
 
     def __init__(self, email, first_name = '', last_name = '', id = '', password = '', token = '', username = ''):

@@ -1,22 +1,35 @@
 {% extends 'base.html' %}
 {% block  content %}
+<div class="container">
     
 
-    <h2>{{ current_user.username }}'s Collection</h2>
+    <h2>Welcome to your collection, 
+        <!--Will greet user by their first name if they provided that upon account-creation, if not it will greet them by their username-->
+        {% if current_user.first_name %}
+            {{ current_user.first_name }}!
+        {% else %}
+            {{ current_user.username }}!
+        {% endif %}
+        </h2>
 
 
-<li>
-    {{ current_user.email }}
-</li>
-<li>
-    {{ current_user.token }}
-</li>
+    <li class="profile-list">
+        <b><u>Email </u></b>: {{ current_user.email }}
+    </li>
+    <li class="profile-list">
+        <b><u>Secure Token</u> </b>: {{ current_user.token }}
+    </li>
 
-<p>About Me: </p>
+
+<p>About Me (140 char max): </p>
 <table>
     {% if current_user.about_me %}
         <p>
             {{ current_user.about_me }}
+        </p>
+    {% else %}
+        <p class="text-muted">
+            Nothing here yet, but feel free to add a little introduction for future visitors!
         </p>
     {% endif %}
 </table>
@@ -26,7 +39,7 @@
 {% endif %}
 
 <div class="container row">
-    <!--Checks to see if there are flashed messages, if there are they are set = messages-->
+    <!--Checks to see if there are flashed messages, in this case it will alert the user that their profile has been updated.-->
     {% with messages = get_flashed_messages(with_categories = true) %}
         {% if messages  %}
             {% for cat,msg in messages %}
@@ -43,17 +56,18 @@
 </div>
 
 
-
-
-
-
+<h3>Your Collection:</h3>
 {% if user_collection %}
-    {% for character in user_collection %}
-    <p>{{ character }}</p>
-    {% endfor %}
+<div class="col-3 text-center">
+    <ul class="list-group">
+        {% for character in user_collection %}
+        <li class="list-group-item">{{ character }}</li>
+        {% endfor %}
+    </ul>
 {% else %}
-    <p>You haven't added any characters yet, feel free to add some via the API requests!</p>
+    <p>Uh oh! You haven't added any characters yet, feel free to add some via the API requests!</p>
+</div>
 {% endif %}
 
-
+</div>
 {% endblock content %}
