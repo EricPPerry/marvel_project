@@ -75,7 +75,7 @@ def signin():
 
             if logged_user and check_password_hash(logged_user.password, password):
                 login_user(logged_user)
-                flash('You were successfully logged in via: email/password', 'auth-success')
+                flash('You were successfully logged in via: email/password, you may now view your collection.', 'auth-success')
                 return redirect(url_for('main_site.home'))
             else:
                 flash('Your email/password is incorrect', 'auth-failed')

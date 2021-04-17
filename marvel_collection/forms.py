@@ -16,10 +16,10 @@ class SignUpForm(FlaskForm):
 #new process I research that similar to setting other text fields, can allow the user to change an 'about me section'
 class EditProfileForm(FlaskForm):
     about_me = TextAreaField('About me')
-    submit = SubmitField()
+    submit = SubmitField('Submit')
 
 class UserLoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
 
-    submit_button = SubmitField()
+    submit_button = SubmitField('Submit')

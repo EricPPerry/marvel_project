@@ -1,18 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Edit Profile</h1>
+<div class="container">
+    <div class="row mx-auto pt-2">
+    
     <form method="POST">
         {{ form.hidden_tag() }}
+        <p><h1>Edit Profile</h1></p>
+        <p>{{ form.about_me.label }} (140 char limit): </p>
         <p>
-            {{ current_user.username }} <br>
-        </p>
-        <p>
-            {{ form.about_me.label }}
+            
             {{ form.about_me(cols=50, row=6) }} <br>
         </p>
-        <p> {{ form.submit() }} </p>
+    </div>
+        <!--<p> {{ form.submit() }} </p>-->
+        <div class="row pt-4">
+            {{ form.submit(class = 'btn btn-primary')}}
+            </div>
     </form>
+</div>
     
 {% endblock content %}
 
